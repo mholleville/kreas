@@ -1,0 +1,16 @@
+{{ $fullName := include "app.fullname" . -}}
+{{ $labels := include "app.labels" . -}}
+{{ range $key, $value := .Values.budget }}
+apiVersion: policy/v1beta1
+kind: PodDisruptionBudget
+metadata:
+  name: {{ $fullName }}-pdb-{{ $key }}
+  labels:
+{{ $labels | indent 4 }}
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: {{ $fullName }}
+  {{ $key }}: {{ $value }}
+---
+{{ end }}

@@ -1,0 +1,7 @@
+---
+# contains the main list of steps to be executed by the role.
+
+- name: Write my envrionement
+  shell: echo {{ environement }}
+
+- include: write_secret_message.yaml

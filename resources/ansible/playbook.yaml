@@ -1,0 +1,9 @@
+---
+
+# Playbooks are Ansible’s configuration, deployment, and orchestration language. They can describe a policy you want your remote systems to enforce, or a set of steps in a general IT process.
+
+- name: Run my sample playbook
+  hosts: 127.0.0.1
+  connection: local
+  roles:
+    - sample

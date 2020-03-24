@@ -1,0 +1,2 @@
+---
+# contains variables for the role. Variables in vars have higher priority than variables in defaults directory.

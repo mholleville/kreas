@@ -1,0 +1,8 @@
+[sample]
+127.0.0.1  ansible_connection=local
+
+[instance1]
+35.86.09.34 <-- change them here
+
+[sample:children]
+instance1

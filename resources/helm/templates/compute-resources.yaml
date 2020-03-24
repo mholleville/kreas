@@ -1,0 +1,51 @@
+apiVersion: v1
+kind: List
+items:
+- apiVersion: v1
+  kind: ResourceQuota
+  metadata:
+    name: {{ include "app.fullname" . }}-pods-high
+    labels:
+  {{ include "app.labels" . | indent 4 }}
+  spec:
+    hard:
+      cpu: "1000"
+      memory: 200Gi
+      pods: "10"
+    scopeSelector:
+      matchExpressions:
+      - operator : In
+        scopeName: PriorityClass
+        values: ["high"]
+- apiVersion: v1
+  kind: ResourceQuota
+  metadata:
+    name: {{ include "app.fullname" . }}-pods-medium
+    labels:
+  {{ include "app.labels" . | indent 4 }}
+  spec:
+    hard:
+      cpu: "10"
+      memory: 20Gi
+      pods: "10"
+    scopeSelector:
+      matchExpressions:
+      - operator : In
+        scopeName: PriorityClass
+        values: ["medium"]
+- apiVersion: v1
+  kind: ResourceQuota
+  metadata:
+    name: {{ include "app.fullname" . }}-pods-low
+    labels:
+  {{ include "app.labels" . | indent 4 }}
+  spec:
+    hard:
+      cpu: "5"
+      memory: 10Gi
+      pods: "10"
+    scopeSelector:
+      matchExpressions:
+      - operator : In
+        scopeName: PriorityClass
+        values: ["low"]

@@ -69,31 +69,19 @@ GLOBAL OPTIONS:
    --version, -v  print the version
 ```
 
-##### Create an `helm` project
+#### Implemented modules
 
-The following command will create a kreas `helm` project. The project contains an `Helm` project. 
+The following options will create a project structure will respect the recommandations :
 
-```bash
-$ kreas init helm
-```
+- `terraform-project` or using alias `tfp`
+- `terraform-module` or using alias `tfm`
+- `helm`
+- `ansible-project` or using alias `asp`
+- `ansible-module` or using alias `asm`
 
-This command adds configuration elements that the `helm create` command does not add.
+Example :
 
-##### Create a `terraform` project
-
-The following command will create a kreas `terraform` project. The project contains a `Terraform` project who respect the best practices. 
-
-```bash
-$ kreas init terraform
-```
-
-##### Create an `ansible` project
-
-The following command will create a kreas `ansible` project. The project contains an `Ansible` project who respect the best practices. 
-
-```bash
-$ kreas init ansible
-```
+`kreas init asp --name kreas-ansible-project-sample`
 
 ### Contributing
 

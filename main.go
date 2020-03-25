@@ -33,25 +33,80 @@ func commands() {
 			Subcommands: []cli.Command{
 				{
 					Name:  "helm",
-					Usage: "create a new app project",
+					Usage: "create a new helm project",
+					Flags: []cli.Flag{
+						cli.StringFlag{
+							Name:  "name",
+							Usage: "name of the helm project",
+						},
+					},
 					Action: func(c *cli.Context) error {
-						InitProject("helm")
+						name := getProjectName(c)
+						InitProject("helm", name)
 						return nil
 					},
 				},
 				{
-					Name:  "terraform",
+					Name:  "terraform-project",
+					Aliases: []string{"tfp"},
 					Usage: "create a new terraform project",
+					Flags: []cli.Flag{
+						cli.StringFlag{
+							Name:  "name",
+							Usage: "name of the terraform project",
+						},
+					},
 					Action: func(c *cli.Context) error {
-						InitProject("terraform")
+						name := getProjectName(c)
+						InitProject("terraform-project", name)
 						return nil
 					},
 				},
 				{
-					Name:  "ansible",
-					Usage: "create a new ansible project",
+					Name:  "terraform-module",
+					Aliases: []string{"tfm"},
+					Usage: "create a new terraform module",
+					Flags: []cli.Flag{
+						cli.StringFlag{
+							Name:  "name",
+							Usage: "name of the terraform module",
+						},
+					},
 					Action: func(c *cli.Context) error {
-						InitProject("ansible")
+						name := getProjectName(c)
+						InitProject("terraform-module", name)
+						return nil
+					},
+				},
+				{
+					Name:  "ansible-project",
+					Aliases: []string{"asp"},
+					Usage: "create a new ansible project",
+					Flags: []cli.Flag{
+						cli.StringFlag{
+							Name:  "name",
+							Usage: "name of the ansible project",
+						},
+					},
+					Action: func(c *cli.Context) error {
+						name := getProjectName(c)
+						InitProject("ansible-project", name)
+						return nil
+					},
+				},
+				{
+					Name:  "ansible-role",
+					Aliases: []string{"asr"},
+					Usage: "create a new ansible role",
+					Flags: []cli.Flag{
+						cli.StringFlag{
+							Name:  "name",
+							Usage: "name of the ansible role",
+						},
+					},
+					Action: func(c *cli.Context) error {
+						name := getProjectName(c)
+						InitProject("ansible-role", name)
 						return nil
 					},
 				},

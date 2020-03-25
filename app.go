@@ -6,9 +6,9 @@ import (
 	"os"
 )
 
-func InitProject(projectType string){
+func InitProject(projectType string, projectName string){
 	dest, _ := os.Getwd()
-	err := copy.Copy(rootProjectPath() + "/resources/" + projectType, dest + "/" + projectType)
+	err := copy.Copy(rootProjectPath() + "/resources/" + projectType, dest + "/" + projectName)
 	if err != nil {
 		log.Fatal(err.Error())
 	}

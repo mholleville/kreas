@@ -1,0 +1,2 @@
+---
+# contains files which we want to be copied to the remote host. We don’t need to specify a path of resources stored in this directory.

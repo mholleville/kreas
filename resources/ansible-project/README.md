@@ -4,7 +4,7 @@ The following elements constitute the project :
 
 ```
 .
-├── groupe_vars/            # contains the variables and vault (encrypted variables)
+├── group_vars/            # contains the variables and vault (encrypted variables)
 ├── roles/                  # contains an example role following the ansible best practices
 ├── playbook.yaml           # is the input file when we lauching the ansible command
 ├── sample                  # is the example inventory

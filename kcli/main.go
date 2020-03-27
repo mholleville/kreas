@@ -63,7 +63,7 @@ func commands() {
 		},
 		{
 			Name:    "list",
-			Usage:   "options for project init",
+			Usage:   "list of project initialization choices",
 			Action: func(c *cli.Context) error {
 				modulesArray := ResourcesList()
 				modulesString := strings.Join(modulesArray,"\n")

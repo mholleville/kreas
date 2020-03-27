@@ -129,4 +129,8 @@ override.tf.json
 # Include tfplan files to ignore the plan output of command: terraform plan -out=tfplan
 # example: *tfplan*
 
+### Terragrunt ###
+# terragrunt cache directories
+**/.terragrunt-cache/*
+
 # End of https://www.gitignore.io/api/go,helm,intellij,terraform

@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"github.com/otiai10/copy"
 	"io/ioutil"
 	"log"
@@ -16,7 +15,8 @@ func InitProject(projectType string, projectName string){
 	}
 }
 
-func ResourcesList(){
+func ResourcesList() []string {
+	var modules []string
 	files, err := ioutil.ReadDir(rootProjectPath() + "/resources")
 	if err != nil {
 		log.Fatal(err)
@@ -24,7 +24,9 @@ func ResourcesList(){
 
 	for _, f := range files {
 		if f.IsDir() {
-			fmt.Println(f.Name())
+			modules = append(modules, f.Name())
 		}
 	}
+
+	return modules
 }

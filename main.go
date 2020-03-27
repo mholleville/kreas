@@ -1,9 +1,11 @@
 package main
 
 import (
+	"fmt"
 	"github.com/urfave/cli"
 	"log"
 	"os"
+	"strings"
 )
 
 var App = cli.NewApp()
@@ -32,6 +34,16 @@ func info() {
 	App.Usage = "Kreas is an open-source tool to help you organize your DevOps project"
 	App.Author = "mholleville"
 	App.Version = "0.0.1"
+}
+
+func configureCommand(name string) cli.Command {
+	return cli.Command{
+		Name:  "configure",
+		Usage: "configure " + name,
+		Action: func(c *cli.Context) {
+			println("configuring " + name)
+		},
+	}
 }
 
 func commands() {
@@ -126,7 +138,9 @@ func commands() {
 			Name:    "list",
 			Usage:   "options for project init",
 			Action: func(c *cli.Context) error {
-				ResourcesList()
+				modulesArray := ResourcesList()
+				modulesString := strings.Join(modulesArray,"\n")
+				fmt.Println(modulesString)
 				return nil
 			},
 		},

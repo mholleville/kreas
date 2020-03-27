@@ -62,6 +62,7 @@ AUTHOR:
 
 COMMANDS:
    init, i  options for project init
+   list     options for project init
    help, h  Shows a list of commands or help for one command
 
 GLOBAL OPTIONS:

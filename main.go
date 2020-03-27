@@ -6,26 +6,36 @@ import (
 	"os"
 )
 
-var app = cli.NewApp()
+var App = cli.NewApp()
 
 func main() {
+	err := Run(os.Args)
+	if err != nil {
+		log.Fatal(err.Error())
+	}
+
+}
+
+func Run(args []string) error {
 	info()
 	commands()
-	err := app.Run(os.Args)
+	err := App.Run(args)
 	if err != nil {
-		log.Fatal(err)
+		return err
 	}
+	return nil
+
 }
 
 func info() {
-	app.Name = "** Kreas **"
-	app.Usage = "Kreas is an open-source tool to help you organize your DevOps project"
-	app.Author = "mholleville"
-	app.Version = "0.0.1"
+	App.Name = "** Kreas **"
+	App.Usage = "Kreas is an open-source tool to help you organize your DevOps project"
+	App.Author = "mholleville"
+	App.Version = "0.0.1"
 }
 
 func commands() {
-	app.Commands = []cli.Command{
+	App.Commands = []cli.Command{
 		{
 			Name:    "init",
 			Aliases: []string{"i"},
@@ -110,6 +120,14 @@ func commands() {
 						return nil
 					},
 				},
+			},
+		},
+		{
+			Name:    "list",
+			Usage:   "options for project init",
+			Action: func(c *cli.Context) error {
+				ResourcesList()
+				return nil
 			},
 		},
 	}

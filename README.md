@@ -17,6 +17,7 @@ Kreas is based on number of open source projects:
 * [Terraform](https://www.terraform.io/) - Terraform enables you to safely and predictably create, change, and improve infrastructure.
 * [Helm](https://helm.sh/) - Helm helps you manage Kubernetes applications — Helm Charts help you define, install, and upgrade even the most complex Kubernetes application.
 * [Kubernetes](https://kubernetes.io/) - Kubernetes (K8s) is an open-source system for automating deployment, scaling, and management of containerized applications.
+* [Terragrunt](https://terragrunt.gruntwork.io/) Terragrunt is a thin wrapper that provides extra tools for keeping your configurations DRY, working with multiple Terraform modules, and managing remote state.
 
 
 ### Installation

@@ -1,4 +1,4 @@
-package main
+package kcli
 
 import (
 	"github.com/otiai10/copy"

@@ -1,7 +1,7 @@
 package main
 
 import (
-	"kreas/kcli"
+	"cli/kcli"
 	"log"
 	"os"
 )

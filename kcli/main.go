@@ -28,7 +28,7 @@ func info() {
 
 func loadSubCommands() []cli.Command {
 	var arrayCommand []cli.Command
-	modules := resourcesList()
+	modules := ResourcesList()
 	for i := 0; i < len(modules); i++ {
 		projectType := modules[i]
 		alias := GenerateAlias(projectType)
@@ -67,7 +67,7 @@ func commands() {
 			Name:    "list",
 			Usage:   "list of project initialization choices",
 			Action: func(c *cli.Context) error {
-				modulesArray := resourcesList()
+				modulesArray := ResourcesList()
 				modulesString := strings.Join(modulesArray,"\n")
 				fmt.Println(modulesString)
 				return nil

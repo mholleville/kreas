@@ -5,6 +5,12 @@ import (
 	"testing"
 )
 
+// func ResourcesList() []string //
+func TestModuleArrayLen(t *testing.T){
+	modulesArray := kcli.ResourcesList()
+	equals(t, len(modulesArray), 5)
+}
+
 // GenerateAlias(module string) string //
 func TestTFProjectAlias(t *testing.T){
 	result := kcli.GenerateAlias("terraform-project")

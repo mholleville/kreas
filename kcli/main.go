@@ -28,12 +28,14 @@ func info() {
 
 func loadSubCommands() []cli.Command {
 	var arrayCommand []cli.Command
-	modules := ResourcesList()
+	modules := resourcesList()
 	for i := 0; i < len(modules); i++ {
 		projectType := modules[i]
+		alias := GenerateAlias(projectType)
 		arrayCommand = append(arrayCommand, cli.Command{
 			Name:  modules[i],
 			Usage: "create new " + modules[i] + " project",
+			Aliases: []string{alias},
 			Flags: []cli.Flag{
 				cli.StringFlag{
 					Name:  "name",
@@ -42,7 +44,7 @@ func loadSubCommands() []cli.Command {
 			},
 			Action: func(c *cli.Context) error {
 				name := getProjectName(c)
-				InitProject(projectType, name)
+				initProject(projectType, name)
 				return nil
 			},
 		})
@@ -65,7 +67,7 @@ func commands() {
 			Name:    "list",
 			Usage:   "list of project initialization choices",
 			Action: func(c *cli.Context) error {
-				modulesArray := ResourcesList()
+				modulesArray := resourcesList()
 				modulesString := strings.Join(modulesArray,"\n")
 				fmt.Println(modulesString)
 				return nil

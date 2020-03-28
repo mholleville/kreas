@@ -5,9 +5,10 @@ import (
 	"io/ioutil"
 	"log"
 	"os"
+	"strings"
 )
 
-func InitProject(projectType string, projectName string){
+func initProject(projectType string, projectName string){
 	dest, _ := os.Getwd()
 	err := copy.Copy(rootProjectPath() + "/resources/" + projectType, dest + "/" + projectName)
 	if err != nil {
@@ -15,7 +16,7 @@ func InitProject(projectType string, projectName string){
 	}
 }
 
-func ResourcesList() []string {
+func resourcesList() []string {
 	var modules []string
 	files, err := ioutil.ReadDir(rootProjectPath() + "/resources")
 	if err != nil {
@@ -29,4 +30,21 @@ func ResourcesList() []string {
 	}
 
 	return modules
+}
+
+func GenerateAlias(module string) string {
+	aliasMap := map[string]string{
+		"terraform": "tf",
+		"ansible": "as",
+	}
+	splittedModule := strings.SplitN(module, "-", 2)
+	if val, ok := aliasMap[splittedModule[0]]; ok {
+		suffix := ""
+		if len(splittedModule) > 1 {
+			suffix = splittedModule[1]
+		}
+		return val + suffix
+	} else {
+		return module
+	}
 }

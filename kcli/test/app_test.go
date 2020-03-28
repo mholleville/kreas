@@ -6,14 +6,24 @@ import (
 )
 
 // GenerateAlias(module string) string //
-func TestTFAlias(t *testing.T){
+func TestTFProjectAlias(t *testing.T){
 	result := kcli.GenerateAlias("terraform-project")
 	equals(t, "tfproject", result)
 }
 
-func TestASAlias(t *testing.T){
+func TestTFAlias(t *testing.T){
+	result := kcli.GenerateAlias("terraform")
+	equals(t, "tf", result)
+}
+
+func TestASRoleAlias(t *testing.T){
 	result := kcli.GenerateAlias("ansible-role")
 	equals(t, "asrole", result)
+}
+
+func TestASAlias(t *testing.T){
+	result := kcli.GenerateAlias("ansible")
+	equals(t, "as", result)
 }
 
 func TestHelmAlias(t *testing.T){

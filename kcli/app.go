@@ -39,7 +39,11 @@ func GenerateAlias(module string) string {
 	}
 	splittedModule := strings.SplitN(module, "-", 2)
 	if val, ok := aliasMap[splittedModule[0]]; ok {
-		return val + splittedModule[1]
+		suffix := ""
+		if len(splittedModule) > 1 {
+			suffix = splittedModule[1]
+		}
+		return val + suffix
 	} else {
 		return module
 	}

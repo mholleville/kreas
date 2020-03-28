@@ -1,7 +1,7 @@
 package test
 
 import (
-	"kreas/kcli"
+	kcli "cli/kcli"
 	"os"
 	"testing"
 )

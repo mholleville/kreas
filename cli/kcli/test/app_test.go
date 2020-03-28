@@ -1,13 +1,13 @@
 package test
 
 import (
-	"kreas/kcli"
+	kcli "cli/kcli"
 	"testing"
 )
 
 // func ResourcesList() []string //
 func TestModuleArrayLen(t *testing.T){
-	modulesArray := kcli.ResourcesList()
+	modulesArray := kcli.LoadResourcesList(kcli.ServerURL)
 	equals(t, len(modulesArray), 5)
 }
 

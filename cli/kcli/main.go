@@ -7,6 +7,7 @@ import (
 )
 
 var App = cli.NewApp()
+var ServerURL = "http://127.0.0.1:8000/api/v0.1"
 
 func Run(args []string) error {
 	info()
@@ -28,7 +29,7 @@ func info() {
 
 func loadSubCommands() []cli.Command {
 	var arrayCommand []cli.Command
-	modules := ResourcesList()
+	modules := LoadResourcesList(ServerURL)
 	for i := 0; i < len(modules); i++ {
 		projectType := modules[i]
 		alias := GenerateAlias(projectType)
@@ -44,7 +45,8 @@ func loadSubCommands() []cli.Command {
 			},
 			Action: func(c *cli.Context) error {
 				name := getProjectName(c)
-				initProject(projectType, name)
+				fmt.Println("Init " + name + " in progress...")
+				//initProject(projectType, name)
 				return nil
 			},
 		})
@@ -57,17 +59,17 @@ func loadSubCommands() []cli.Command {
 
 func commands() {
 	App.Commands = []cli.Command{
-		{
-			Name:    "init",
-			Aliases: []string{"i"},
-			Usage:   "options for project init",
-			Subcommands: loadSubCommands(),
-		},
+		//{
+		//	Name:    "init",
+		//	Aliases: []string{"i"},
+		//	Usage:   "options for project init",
+		//	Subcommands: loadSubCommands(),
+		//},
 		{
 			Name:    "list",
 			Usage:   "list of project initialization choices",
 			Action: func(c *cli.Context) error {
-				modulesArray := ResourcesList()
+				modulesArray := LoadResourcesList(ServerURL)
 				modulesString := strings.Join(modulesArray,"\n")
 				fmt.Println(modulesString)
 				return nil

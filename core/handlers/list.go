@@ -8,7 +8,7 @@ import (
 	"net/http"
 )
 
-var List = func (w http.ResponseWriter, r *http.Request) {
+var ListHandler = func (w http.ResponseWriter, r *http.Request) {
 	modules := ResourcesList()
 
 	w.Header().Add("Content-Type", "application/json")

@@ -1,0 +1,6 @@
+{
+  "package": "com.kreas",
+  "applicationName": "myApp",
+  "version" : "1.0.0",
+  "firstClass" : "Helloworld"
+}

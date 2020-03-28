@@ -1,0 +1,6 @@
+<project>
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>{{.Package}}</groupId>
+    <artifactId>{{.ApplicationName}}</artifactId>
+    <version>{{.Version}}</version>
+</project>

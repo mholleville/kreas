@@ -1,19 +1,24 @@
 package kcli
 
 import (
+	"bytes"
+	"encoding/json"
 	"github.com/otiai10/copy"
+	"html/template"
 	"io/ioutil"
 	"log"
 	"os"
+	"path/filepath"
 	"strings"
 )
 
-func initProject(projectType string, projectName string){
+func initProject(projectType string, projectName string) {
 	dest, _ := os.Getwd()
-	err := copy.Copy(rootProjectPath() + "/resources/" + projectType, dest + "/" + projectName)
+	err := copy.Copy(rootProjectPath()+"/resources/"+projectType, dest+"/"+projectName)
 	if err != nil {
 		log.Fatal(err.Error())
 	}
+	applyTemplate(dest + "/" + projectName)
 }
 
 func ResourcesList() []string {
@@ -35,7 +40,7 @@ func ResourcesList() []string {
 func GenerateAlias(module string) string {
 	aliasMap := map[string]string{
 		"terraform": "tf",
-		"ansible": "as",
+		"ansible":   "as",
 	}
 	splittedModule := strings.SplitN(module, "-", 2)
 	if val, ok := aliasMap[splittedModule[0]]; ok {
@@ -46,5 +51,37 @@ func GenerateAlias(module string) string {
 		return val + suffix
 	} else {
 		return module
+	}
+}
+
+func applyTemplate(rootDir string) {
+	var files []string
+	type Profile struct {
+		Package         string
+		ApplicationName string
+		Version         string
+		FirstClass      string
+	}
+	jsonProfile, err := ioutil.ReadFile("profile.json")
+	if err != nil {
+		log.Fatalln(err)
+	}
+	var profile Profile
+	json.Unmarshal([]byte(jsonProfile), &profile)
+	filepath.Walk(rootDir, func(path string, info os.FileInfo, err error) error {
+		file, err := os.Stat(path)
+		if !file.IsDir() {
+			files = append(files, path)
+		}
+		return nil
+	})
+	for _, f := range files {
+		tpl, err := template.ParseFiles(f)
+		var output bytes.Buffer
+		err = tpl.Execute(&output, profile)
+		ioutil.WriteFile(f, output.Bytes(), 0644)
+		if err != nil {
+			log.Fatal(err.Error())
+		}
 	}
 }

@@ -1,0 +1,16 @@
+version: 2
+jobs:
+  build-go1.13:
+    docker:
+      - image: circleci/golang:1.13
+        working_directory: /go/src/github.com/kreas/gomodules
+    steps:
+      - checkout
+      - run: go mod download
+      - run: go test kreas/kcli/test -v
+      - run: go build -o kreas
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - build-go1.13

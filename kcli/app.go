@@ -16,7 +16,7 @@ func initProject(projectType string, projectName string){
 	}
 }
 
-func resourcesList() []string {
+func ResourcesList() []string {
 	var modules []string
 	files, err := ioutil.ReadDir(rootProjectPath() + "/resources")
 	if err != nil {

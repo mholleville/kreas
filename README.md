@@ -74,15 +74,15 @@ GLOBAL OPTIONS:
 
 The following options will create a project structure will respect the recommandations :
 
-- `terraform-project` or using alias `tfp`
-- `terraform-module` or using alias `tfm`
+- `terraform-project` or using alias `tfproject`
+- `terraform-module` or using alias `tfmodule`
 - `helm`
-- `ansible-project` or using alias `asp`
-- `ansible-module` or using alias `asm`
+- `ansible-project` or using alias `asproject`
+- `ansible-module` or using alias `asmodule`
 
 Example :
 
-`kreas init asp --name kreas-ansible-project-sample`
+`kreas init asproject --name kreas-ansible-project-sample`
 
 ### Contributing
 

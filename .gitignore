@@ -9,6 +9,9 @@
 *.so
 *.dylib
 
+cli/kreas-cli
+core/kreas-core
+
 # Test binary, built with `go test -c`
 *.test
 

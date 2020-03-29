@@ -45,8 +45,7 @@ func loadSubCommands() []cli.Command {
 			},
 			Action: func(c *cli.Context) error {
 				name := getProjectName(c)
-				fmt.Println("Init " + name + " in progress...")
-				//initProject(projectType, name)
+				GenerateProjectArchive(ServerURL, projectType, name)
 				return nil
 			},
 		})
@@ -59,12 +58,12 @@ func loadSubCommands() []cli.Command {
 
 func commands() {
 	App.Commands = []cli.Command{
-		//{
-		//	Name:    "init",
-		//	Aliases: []string{"i"},
-		//	Usage:   "options for project init",
-		//	Subcommands: loadSubCommands(),
-		//},
+		{
+			Name:    "init",
+			Aliases: []string{"i"},
+			Usage:   "options for project init",
+			Subcommands: loadSubCommands(),
+		},
 		{
 			Name:    "list",
 			Usage:   "list of project initialization choices",

@@ -8,12 +8,12 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"path/filepath"
+	"strings"
 )
 
 func GenerateProjectArchive(serverUrl string, projectType string, projectName string) {
 	path := fmt.Sprintf(serverUrl+"/init?type=%s&name=%s", projectType, projectName)
-	//dest, _ := os.Getwd()
-	//target := dest + "/" + projectName
 	resp, err := http.Get(path)
 	if err != nil {
 		fmt.Printf("err: %s", err)
@@ -39,19 +39,23 @@ func GenerateProjectArchive(serverUrl string, projectType string, projectName st
 			log.Fatal(err.Error())
 		}
 		fmt.Println("Reading file:", zipFile.Name)
-		if zipFile.FileInfo().IsDir() {
-			fmt.Println(zipFile.Mode())
-			//os.MkdirAll(target + zipFile.Name, 0777)
-			os.MkdirAll("subdir/parent/child", 0755)
-			continue
-		}
 		unzippedFileBytes, err := readZipFile(zipFile)
 		if err != nil {
 			log.Println(err)
 			continue
 		}
 
-		_ = unzippedFileBytes // this is unzipped file bytes
+		file := unzippedFileBytes
+		res1 := strings.Split(strings.TrimPrefix(zipFile.Name, "/"), "/")
+		if len(res1) > 0 {
+			res1 = res1[:len(res1)-1]
+		}
+		res1[0] = projectName
+		dest, _ := os.Getwd()
+		target := dest + "/"
+		newPath := filepath.Join(target, strings.Join(res1, "/"))
+		os.MkdirAll(newPath, os.ModePerm)
+		ioutil.WriteFile(target + strings.Replace(zipFile.Name, projectType, projectName, 1), file, 0644)
 	}
 }
 

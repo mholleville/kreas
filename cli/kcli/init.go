@@ -46,15 +46,12 @@ func GenerateProjectArchive(serverUrl string, projectType string, projectName st
 		}
 
 		file := unzippedFileBytes
-		res1 := strings.Split(strings.TrimPrefix(zipFile.Name, "/"), "/")
-		if len(res1) > 0 {
-			res1 = res1[:len(res1)-1]
-		}
-		res1[0] = projectName
+
 		dest, _ := os.Getwd()
 		target := dest + "/"
-		newPath := filepath.Join(target, strings.Join(res1, "/"))
-		os.MkdirAll(newPath, os.ModePerm)
+
+		createProjectDirectory(projectName, zipFile, target)
+
 		ioutil.WriteFile(target + strings.Replace(zipFile.Name, projectType, projectName, 1), file, 0644)
 	}
 }
@@ -66,5 +63,16 @@ func readZipFile(zf *zip.File) ([]byte, error) {
 	}
 	defer f.Close()
 	return ioutil.ReadAll(f)
+}
+
+func createProjectDirectory(projectName string, zipFile *zip.File, target string) {
+	res1 := strings.Split(strings.TrimPrefix(zipFile.Name, "/"), "/")
+	if len(res1) > 0 {
+		res1 = res1[:len(res1)-1]
+	}
+	res1[0] = projectName
+	newPath := filepath.Join(target, strings.Join(res1, "/"))
+	os.MkdirAll(newPath, os.ModePerm)
+
 }
 

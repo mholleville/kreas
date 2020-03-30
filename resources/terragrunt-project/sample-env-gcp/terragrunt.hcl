@@ -30,7 +30,7 @@ provider "google-beta" {
   project     = "${local.gcp_project}"
   region      = "${local.gcp_region}"
   zone        = "${local.gcp_zone}"
-  version     = "2.20.0"
+  version     = "3.0.0"
 }
 
 
@@ -39,7 +39,7 @@ provider "google" {
   project     = "${local.gcp_project}"
   region      = "${local.gcp_region}"
   zone        = "${local.gcp_zone}"
-  version     = "2.20.0"
+  version     = "3.0.0"
 }
 EOF
 }

@@ -36,6 +36,7 @@ func GenerateAlias(module string) string {
 	aliasMap := map[string]string{
 		"terraform": "tf",
 		"ansible": "as",
+		"terragrunt": "tg",
 	}
 	splittedModule := strings.SplitN(module, "-", 2)
 	if val, ok := aliasMap[splittedModule[0]]; ok {

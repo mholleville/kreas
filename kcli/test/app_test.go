@@ -8,7 +8,7 @@ import (
 // func ResourcesList() []string //
 func TestModuleArrayLen(t *testing.T){
 	modulesArray := kcli.ResourcesList()
-	equals(t, len(modulesArray), 5)
+	equals(t, len(modulesArray), 6)
 }
 
 // GenerateAlias(module string) string //
@@ -35,6 +35,16 @@ func TestASAlias(t *testing.T){
 func TestHelmAlias(t *testing.T){
 	result := kcli.GenerateAlias("helm")
 	equals(t, "helm", result)
+}
+
+func TestTGProjectAlias(t *testing.T){
+	result := kcli.GenerateAlias("terragrunt-project")
+	equals(t, "tgproject", result)
+}
+
+func TestTGAlias(t *testing.T){
+	result := kcli.GenerateAlias("terragrunt")
+	equals(t, "tg", result)
 }
 
 func TestUndefinedAlias(t *testing.T){
